@@ -27,9 +27,14 @@ class MaterialKeyboardView : KeyboardView {
         placeholderLabel.textColor = UIColor(rgb: (153,153,153))
     
         
-        self.layer.shadowOffset = CGSize(width:0, height: -1)
-        self.layer.shadowOpacity = 0.2
+        commentView.layer.shadowOffset = CGSize(width:0, height: -1)
+        commentView.layer.shadowOpacity = 0.2
         
+    }
+    
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+        commentView.toFullyBottom()
     }
     
     private func setupConfiguration() {
@@ -77,42 +82,3 @@ class MaterialKeyboardView : KeyboardView {
     
 }
 
-extension UIView {
-    func toFullyBottom() {
-        self.top = superview!.bounds.size.height
-        self.autoresizingMask = [UIViewAutoresizing.flexibleTopMargin, UIViewAutoresizing.flexibleWidth]
-    }
-    
-    public var top: CGFloat{
-        get {
-            return self.frame.origin.y
-        }
-        set {
-            var frame = self.frame
-            frame.origin.y = newValue
-            self.frame = frame
-        }
-    }
-    
-    
-    public var bottom: CGFloat{
-        get {
-            return self.frame.origin.y + self.frame.size.height
-        }
-        set {
-            var frame = self.frame;
-            frame.origin.y = newValue - frame.size.height;
-            self.frame = frame;
-        }
-    }
-}
-
-extension UIColor {
-    
-    convenience init(rgb: (r: CGFloat, g: CGFloat, b: CGFloat)) {
-        self.init(red: rgb.r/255, green: rgb.g/255, blue: rgb.b/255, alpha: 1)
-    }
-    convenience init(rgba: (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat)) {
-        self.init(red: rgba.r/255, green: rgba.g/255, blue: rgba.b/255, alpha: rgba.a)
-    }
-}

@@ -14,6 +14,7 @@
 		6C1DA2691DA419C00034C4B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C1DA2671DA419C00034C4B2 /* LaunchScreen.storyboard */; };
 		6C1DA2741DA419C00034C4B2 /* Comment_KeyboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1DA2731DA419C00034C4B2 /* Comment_KeyboardTests.swift */; };
 		6C1DA27F1DA419C00034C4B2 /* Comment_KeyboardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1DA27E1DA419C00034C4B2 /* Comment_KeyboardUITests.swift */; };
+		6C54371C1DB5D2DB00F32695 /* Keyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C54371B1DB5D2DB00F32695 /* Keyboard+Extension.swift */; };
 		6C91A5F31DA4215A00F232A4 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91A5F21DA4215A00F232A4 /* KeyboardView.swift */; };
 		6C91A5F61DA42CAE00F232A4 /* MaterialKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91A5F51DA42CAE00F232A4 /* MaterialKeyboardView.swift */; };
 		6CDC2BA71DA41AEA00130F2D /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDC2BA61DA41AEA00130F2D /* TextField.swift */; };
@@ -50,6 +51,7 @@
 		6C1DA27A1DA419C00034C4B2 /* Comment KeyboardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Comment KeyboardUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C1DA27E1DA419C00034C4B2 /* Comment_KeyboardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment_KeyboardUITests.swift; sourceTree = "<group>"; };
 		6C1DA2801DA419C00034C4B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6C54371B1DB5D2DB00F32695 /* Keyboard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Keyboard+Extension.swift"; sourceTree = "<group>"; };
 		6C91A5F21DA4215A00F232A4 /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		6C91A5F51DA42CAE00F232A4 /* MaterialKeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialKeyboardView.swift; sourceTree = "<group>"; };
 		6CDC2BA61DA41AEA00130F2D /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				6C1DA25E1DA419C00034C4B2 /* AppDelegate.swift */,
 				6C1DA2601DA419C00034C4B2 /* ViewController.swift */,
 				6C91A5F51DA42CAE00F232A4 /* MaterialKeyboardView.swift */,
+				6C54371B1DB5D2DB00F32695 /* Keyboard+Extension.swift */,
 				6C91A5F41DA42C8900F232A4 /* Key Board */,
 				6C1DA2621DA419C00034C4B2 /* Main.storyboard */,
 				6C1DA2651DA419C00034C4B2 /* Assets.xcassets */,
@@ -283,6 +286,7 @@
 				6C91A5F61DA42CAE00F232A4 /* MaterialKeyboardView.swift in Sources */,
 				6C91A5F31DA4215A00F232A4 /* KeyboardView.swift in Sources */,
 				6C1DA2611DA419C00034C4B2 /* ViewController.swift in Sources */,
+				6C54371C1DB5D2DB00F32695 /* Keyboard+Extension.swift in Sources */,
 				6C1DA25F1DA419C00034C4B2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

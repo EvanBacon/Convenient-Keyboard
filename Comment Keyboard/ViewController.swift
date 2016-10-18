@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     override func loadView() {
         super.loadView()
         self.view.addSubview(keyboardTextField)
-        keyboardTextField.toFullyBottom()
+//        keyboardTextField.toFullyBottom()
         
         
         if Platform.isSimulator {

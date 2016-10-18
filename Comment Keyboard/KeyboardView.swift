@@ -20,6 +20,10 @@ open class KeyboardView: UIView {
     //Delegate
     open weak var delegate : KeyboardViewDelegate?
     
+    var commentView:UIView!
+    var underlayView:UIView!
+
+    var underlayAlpha:CGFloat = 0.5
     //Init
     public convenience init() {
         self.init(frame: CGRect(origin: CGPoint(), size: CGSize(width: UIScreen.main.bounds.width, height: keyboardViewDefaultHeight)))
@@ -35,14 +39,29 @@ open class KeyboardView: UIView {
     
     public override init(frame : CGRect) {
         super.init(frame : frame)
+        self.frame = UIScreen.main.bounds
+        
+        commentView = UIView()
+        commentView.frame = frame
+        self.addSubview(commentView)
+        
+        
         setupComponents()
     }
     
     func setupComponents() {
-        keyboardViewDefaultHeight = frame.height
+        keyboardViewDefaultHeight = commentView.frame.height
         
-        keyboardView.frame = bounds
-        self.addSubview(keyboardView)
+        keyboardView.frame = commentView.bounds
+        commentView.addSubview(keyboardView)
+        
+        underlayView = UIView(frame:UIScreen.main.bounds)
+        underlayView.backgroundColor = UIColor.clear
+        
+        
+        underlayView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(underlayTapped(gesture:)) ))
+        self.insertSubview(underlayView, belowSubview: commentView)
+        
         
         keyboardView.addSubview(textViewBackground)
         
@@ -56,6 +75,14 @@ open class KeyboardView: UIView {
         
         registeringKeyboardNotification()
         
+    }
+    
+    func underlayTapped(gesture:UITapGestureRecognizer) {
+        if isEditing {
+            hide()
+        } else {
+            show()
+        }
     }
 
     
@@ -250,7 +277,7 @@ open class KeyboardView: UIView {
             placeholderLabel.sizeToFit()
             placeholderLabel.frame.origin = CGPoint(x: 8.0, y: (textViewDefaultHeight - placeholderLabel.bounds.size.height) / 2);
             
-        }else if placeholderLabel.textAlignment == .center {
+        } else if placeholderLabel.textAlignment == .center {
             placeholderLabel.frame = placeholderLabel.superview!.bounds
         }
         
@@ -333,7 +360,7 @@ extension KeyboardView {
             if newKeyboardHeight != keyboardView.bounds.size.height && superview != nil {
                 UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
                     let lastKeyboardFrameHeight = (self.lastKeyboardFrame.origin.y == 0.0 ? self.superview!.bounds.size.height : self.lastKeyboardFrame.origin.y)
-                    self.frame = CGRect(x: self.frame.origin.x,  y: lastKeyboardFrameHeight - newKeyboardHeight, width: self.frame.size.width, height: newKeyboardHeight)
+                    self.commentView.frame = CGRect(x: self.commentView.frame.origin.x,  y: lastKeyboardFrameHeight - newKeyboardHeight, width: self.commentView.frame.size.width, height: newKeyboardHeight)
                     
                     }, completion:nil
                 )
@@ -413,9 +440,13 @@ extension KeyboardView {
             ? 0
             : -self.keyboardView.bounds.size.height
         
-        UIView.animate(withDuration: keyboardAnimationDuration) {
-            self.frame.origin.y = self.lastKeyboardFrame.origin.y + offset
-            }
+        UIView.animate(withDuration: keyboardAnimationDuration, animations: {
+            self.underlayView.backgroundColor = UIColor.black.withAlphaComponent(keyboardClosed ? 0 : self.underlayAlpha)
+            self.commentView.frame.origin.y = self.lastKeyboardFrame.origin.y + offset
+        }) {
+            _ in
+            self.isUserInteractionEnabled = !keyboardClosed
+        }
     }
     
     
@@ -522,12 +553,3 @@ extension KeyboardView : UITextViewDelegate {
     }
 }
 
-extension UIView {
-    fileprivate func toBottom(offset : CGFloat = 0.0) {
-        if let superView = superview {
-            frame.origin.y = superView.bounds.size.height - offset - frame.size.height;
-        }else {
-            print("UIView+SYAutoLayout toBottom 没有 superview");
-        }
-    }
-}
